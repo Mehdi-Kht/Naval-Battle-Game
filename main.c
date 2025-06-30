@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "jeu.h"
 
 /**
 *    Point d'entrée principal pour le jeu de Bataille Navale.
@@ -26,31 +27,27 @@
 int main(int argc, char* argv[]){
    init_nb_aleatoire();
    if (argc != 2 && argc != 3 && argc != 1) {
-      printf("erreur : exactement zéro, un ou deux arguments doivent être fournis\n");
+      printf("error: Exactly zero, one or two arguments must be provided\n");
       return 1; 
    }
 
    int option_statistique = 0;
-   if (argc == 3 || argc == 2)
-   {
-      if (strcmp(argv[1],"-s") == 0 || strcmp(argv[1], "-S") == 0)
-      {
+   if (argc == 3 || argc == 2) {
+      if(strcmp(argv[1], "-s") == 0 || strcmp(argv[1], "-S") == 0) {
          option_statistique = 1;
       } else {
-         printf("Option inconnue\n");
+         printf("Unknown option\n");
          return 1;
       }
-   }
-
+   }  
    char *filename;
-   if (argc == 3)
-      filename = argv[2];
-   else if (argc == 2)
-      filename = "Stats.txt"
-
+   if(argc == 3)
+      filename =argv[2];
+   else if(argc == 2)
+      filename = "Stats.txt";
    printf("Bienvenue au jeu Bataille Navale : \n");
    //Début du jeu
-      if(option_statistique) {
+   if(option_statistique) {
       int taille_plateau = -1;
       while(taille_plateau < 6 || taille_plateau > 100){
          printf("Veuillez saisir la taille du plateau (6<= taille <=100): \n");
